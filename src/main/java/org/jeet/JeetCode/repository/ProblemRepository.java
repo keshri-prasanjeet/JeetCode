@@ -2,6 +2,8 @@ package org.jeet.JeetCode.repository;
 
 import org.jeet.JeetCode.domain.entities.problemEntity;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface problemRepository extends CrudRepository<problemEntity, String> {
+@Repository
+public interface ProblemRepository extends CrudRepository<problemEntity, String> {
 }

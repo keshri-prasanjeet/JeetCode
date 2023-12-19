@@ -60,8 +60,11 @@ public class JeetCodeController {
     }
 
     @PostMapping(path = "/login/")
-    public String loginUser(@RequestBody LoginRequest loginRequest){
-        String token = jwtUtil.generateToken(loginRequest.getUserName());
-        return token;
+    public ResponseEntity loginUser(@RequestBody LoginRequest loginRequest){
+        if(userService.authenticate(loginRequest)){
+            String token = jwtUtil.generateToken(loginRequest.getUserName());
+            return new ResponseEntity(token, HttpStatus.OK);
+        }
+        return new ResponseEntity("Wrong credentials", HttpStatus.UNAUTHORIZED);
     }
 }

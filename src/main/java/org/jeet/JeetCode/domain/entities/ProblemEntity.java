@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "problems")
 @Entity
-public class problemEntity {
+public class ProblemEntity {
     @Id
     private String problemId;
     private String title;

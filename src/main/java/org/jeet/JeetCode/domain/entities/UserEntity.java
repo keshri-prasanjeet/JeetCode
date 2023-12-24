@@ -21,8 +21,4 @@ public class UserEntity {
     private String fullName;
     private String password;
 
-    public void setPassword(String rawPassword){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        this.password = bCryptPasswordEncoder.encode(rawPassword);
-    }
 }

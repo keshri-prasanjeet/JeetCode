@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
     public static final String SECRET = "MySecretKey";
-    private static final long EXPIRATION_TIME =  864000000;//10 days
-    public static String generateToken(String username){
+    public static final long EXPIRATION_TIME =  864000000;//10 days
+    public String generateToken(String username){
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
@@ -15,11 +15,21 @@ public class JwtUtil {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
     }
-    public static String extractUserName(String token){
+    public String extractUserName(String token){
         return Jwts.parser()
                 .setSigningKey(SECRET)
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
     }
+
+    public static boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

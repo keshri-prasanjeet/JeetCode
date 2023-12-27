@@ -2,7 +2,6 @@ package org.jeet.JeetCode.services.impl;
 
 import java.util.Optional;
 
-import org.jeet.JeetCode.domain.entities.LoginRequest;
 import org.jeet.JeetCode.domain.entities.SignUpRequest;
 import org.jeet.JeetCode.domain.entities.UserEntity;
 import org.jeet.JeetCode.repository.UserRepository;
@@ -24,10 +23,6 @@ public class userServiceImpl implements UserService , UserDetailsService
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-//    public userServiceImpl(UserRepository userRepository){
-//        this.userRepository = userRepository;
-//    }
-
     @Override
     public void signUpUser(SignUpRequest signUpRequest) {
         UserEntity userEntity = new UserEntity();
@@ -38,18 +33,29 @@ public class userServiceImpl implements UserService , UserDetailsService
     }
 
     @Override
-    public boolean authenticate(LoginRequest loginRequest) {
+    public UserEntity findById(String userName) {
+        Optional<UserEntity> optionalUserEntity = userRepository.findById(userName);
+        if(optionalUserEntity.isPresent()){
+            UserEntity user = optionalUserEntity.get();
+            return user;
+        }
+        return null;
+    }
+
+    /**Deprecated
+    @Override
+    public boolean CustomAuthenticate(LoginRequest loginRequest) {
         Optional<UserEntity> optionalUser = userRepository.findById(loginRequest.getUserName());
         if(optionalUser.isEmpty()) return false;
         UserEntity user = optionalUser.get();
         return bCryptPasswordEncoder.matches(loginRequest.getPassword(),user.getPassword());
     }
-
+    */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final Optional<UserEntity> optionalUserEntity = userRepository.findById(username);
         if(optionalUserEntity.isEmpty())
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException("User not found with username: " + username);
         UserEntity userEntity = optionalUserEntity.get();
         UserDetails user = User.withUsername(userEntity.getUserName()).password(userEntity.getPassword()).build();
         return user;

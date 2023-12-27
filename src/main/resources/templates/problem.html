@@ -1,58 +1,100 @@
-<!-- src/main/resources/templates/problem.html -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LeetCode Problem - 401. Bitwise AND of Numbers Range</title>
+  <title>JeetCode Problem</title>
   <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #f4f4f4;
+    }
 
-        .problem {
-            flex: 1;
-            background-color: #f8f8f8;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    .problem {
+      flex: 1;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .editor {
-            flex: 1;
-            margin-left: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 10px;
-        }
+    .editor-container {
+      flex: 1;
+      margin-left: 20px;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
 
-        h1 {
-            color: #333;
-        }
+    h1 {
+      color: #333;
+    }
 
-        h2 {
-            color: #555;
-        }
+    h2 {
+      color: #555;
+    }
 
-        p {
-            color: #666;
-        }
+    p {
+      color: #666;
+    }
 
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: "Courier New", Courier, monospace;
-        }
+    code {
+      background-color: #f4f4f4;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-family: 'Courier New', Courier, monospace;
+    }
 
-        .example {
-            margin-top: 15px;
-        }
-    </style>
+    .example {
+      margin-top: 15px;
+    }
+
+    textarea {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      padding: 10px;
+      margin: 0;
+      border: none;
+      background-color: whitesmoke;
+      color: #333;
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: 5px;
+      resize: none;
+      box-sizing: border-box;
+    }
+
+    .submit-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: green;
+
+    }
+
+    .submit-button:active{
+      background-color: #3e8e41;
+      box-shadow: 0 2px #878787;
+      transform: translateY(4px);
+    }
+  </style>
 </head>
 <body>
 
@@ -79,9 +121,12 @@
   </ul>
 </div>
 
-<div class="editor">
-  <textarea rows="20" style="width: 100%;"></textarea>
+<div class="editor-container">
+  <textarea id="codeTextArea" rows="20" placeholder="Type your code here..."></textarea>
 </div>
 
+<button class="submit-button" th:pIdVar ="${problem.problemId}" onclick="submitCodeWrapper(this.getAttribute('pIdVar'))">Submit</button>
+
+<script th:src="@{/js/problem.js}" defer="defer"></script>
 </body>
 </html>

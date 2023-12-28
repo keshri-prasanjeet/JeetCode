@@ -24,9 +24,7 @@ public class submissionServiceImpl implements SubmissionService {
 
     @Override
     public void addSubmission(String trimmedCode, String problemId, String userName) {
-        System.err.println("inside submission service impl"+userName);
         UserEntity user = userService.findById(userName);
-//        System.out.println(user.getUserName());
         submissionRepository.save(SubmissionEntity.builder()
                                     .submissionCode(trimmedCode)
                                     .problemId(problemId)

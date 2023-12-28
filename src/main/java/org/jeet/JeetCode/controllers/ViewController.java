@@ -7,9 +7,12 @@ import org.jeet.JeetCode.Utility.SignUpDataValidator;
 import org.jeet.JeetCode.domain.entities.ProblemEntity;
 import org.jeet.JeetCode.domain.entities.SignUpRequest;
 import org.jeet.JeetCode.domain.entities.SubmissionEntity;
+import org.jeet.JeetCode.domain.entities.UserEntity;
 import org.jeet.JeetCode.services.ProblemService;
 import org.jeet.JeetCode.services.SubmissionService;
 import org.jeet.JeetCode.services.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -106,7 +109,15 @@ public class ViewController {
     @GetMapping(path = "/problems")
     public String listAllProblems(Model model){
         List<ProblemEntity> problemEntityList = problemService.listAllProblems();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if(principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
         model.addAttribute("problems", problemEntityList);
+        model.addAttribute("username", username);
         return "problems";
     }
 
@@ -123,6 +134,19 @@ public class ViewController {
         return "submission"; // Make sure this matches the Thymeleaf template file name
     }
 
+    @GetMapping("/me")
+    public String myProfile(Model model){
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if(principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        UserEntity user = userService.findById(username);
+        model.addAttribute("user", user);
+        return "me";
+    }
 
 }
 

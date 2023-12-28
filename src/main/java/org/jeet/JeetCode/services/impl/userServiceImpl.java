@@ -42,6 +42,16 @@ public class userServiceImpl implements UserService , UserDetailsService
         return null;
     }
 
+    @Override
+    public void updateSubmissionCount(String userName) {
+        UserEntity user = findById(userName);
+        Long curSubCou = user.getSubmissionCount();
+        if(curSubCou == null) curSubCou = 0L;
+        System.err.println(curSubCou);
+        user.setSubmissionCount(curSubCou+1);
+        userRepository.save(user);
+    }
+
     /**Deprecated
     @Override
     public boolean CustomAuthenticate(LoginRequest loginRequest) {

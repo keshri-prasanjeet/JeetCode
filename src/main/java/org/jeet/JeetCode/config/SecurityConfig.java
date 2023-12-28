@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -88,9 +87,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/signup", "/login", "/signup/**", "/hello", "/onlyTest", "/onlyTest/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/onlyTest").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/onlyTest/**").permitAll()
+                        .requestMatchers("/signup", "/login", "/signup/**", "/problems/submissions/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

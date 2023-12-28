@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LeetCode Clone - Submissions List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JeetCode - Submissions List</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Consolas', monospace;
             background-color: #f4f4f4;
-            margin: 20px;
+            margin: 0px;
         }
+
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #ddd;
+        }
+
+        #navbar a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 800;
+            margin-left: 20px;
+        }
+
         h2 {
             color: #333;
+            font-weight:bolder;
         }
         table {
             width: 100%;
@@ -22,7 +42,7 @@
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #216222;
             color: white;
         }
         tr:hover {
@@ -32,8 +52,14 @@
 </head>
 <body>
 
+<div id="navbar">
+    <a th:href="@{/problems}"> | Problems</a>
+    <a th:href="@{/me}" id="user-info" th:text="${username}">| Profile</a>
+    <a th:href="@{/logout}" style="margin-left: auto;">Logout</a>
+</div>
+
 <div style="text-align: center;">
-    <h2>LeetCode Clone - Submissions List for Problem: <span th:text="${problemId}"></span></h2>
+    <h2>JeetCode - Submissions List for Problem: <span th:text="${problemId}"></span></h2>
 </div>
 
 <table>

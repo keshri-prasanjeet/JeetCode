@@ -8,5 +8,7 @@ public interface UserService {
 
     UserEntity findById(String userName);
 
+    void updateSubmissionCount(String userName);
+
     //boolean CustomAuthenticate(LoginRequest loginRequest);
 }

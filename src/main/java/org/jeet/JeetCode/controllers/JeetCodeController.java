@@ -25,6 +25,7 @@ public class JeetCodeController {
     private UserService userService;
     private JwtUtil jwtUtil;
     private SubmissionService submissionService;
+
     public JeetCodeController(ProblemService problemService,
                               SignUpDataValidator signUpDataValidator,
                               UserService userService,
@@ -72,7 +73,7 @@ public class JeetCodeController {
 //        return new ResponseEntity("Wrong credentials", HttpStatus.UNAUTHORIZED);
 //    }
 
-
+    //TODO cleanup this function and move business logic to some util function
     @PostMapping(path = "/problem-submit/{problemId}")
     public ResponseEntity<String> submitSolution(@PathVariable("problemId") String problemId, @RequestBody @NotNull String rawCode, HttpServletRequest request) {
         String trimmedCode = rawCode.replaceAll("^\"|\"$", "");
@@ -87,7 +88,7 @@ public class JeetCodeController {
             return ResponseEntity.ok("There is no code");
         } else if(trimmedCode.length() > 0) {
             userService.updateSubmissionCount(username);
-            /* to do change the return type of addSubmission to SubmissionEntity and add that to userEntity list */
+            /* TODO change the return type of addSubmission to SubmissionEntity and add that to userEntity list */
             submissionService.addSubmission(trimmedCode, problemId, username);
             return ResponseEntity.ok(trimmedCode);
         } else

@@ -21,7 +21,7 @@ public class UserEntity {
     private String password;
     private Long submissionCount;
 
-    //to do
+    //TODO implement the list of SubmissionEntity inside UserEntity
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 //    private List<SubmissionEntity> submissions;
 }

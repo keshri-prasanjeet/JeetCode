@@ -38,6 +38,16 @@
       display: flex;
     }
 
+    .submission-details-example{
+      padding-left:10px;
+      display: none;
+    }
+
+    .submission-details{
+      padding-left:10px;
+      display: none;
+    }
+
     .problem {
       flex: 1;
       background-color: #fff;
@@ -94,7 +104,33 @@
     }
 
     .submit-button {
-      position: absolute;
+      position: relative;
+      bottom: 10px;
+      right: 10px;
+      background-color: #d5512f;
+      color: white;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #ae4805;
+    }
+
+    .submit-button:active{
+      background-color: #8e4a3e;
+      box-shadow: 0 2px #878787;
+      transform: translateY(4px);
+    }
+
+    .run-button {
+      position: relative;
       bottom: 10px;
       right: 10px;
       background-color: #4CAF50;
@@ -109,14 +145,21 @@
       cursor: pointer;
     }
 
-    .submit-button:hover {
+    .run-button:hover {
       background-color: green;
     }
 
-    .submit-button:active{
+    .run-button:active{
       background-color: #3e8e41;
       box-shadow: 0 2px #878787;
       transform: translateY(4px);
+    }
+
+    #subcode{
+      color: blue;
+      font-weight:bolder;
+      padding-left:20px;
+      display: none;
     }
 
     #user-info {
@@ -130,6 +173,7 @@
       cursor: pointer;
       text-decoration: underline;
     }
+
 
   </style>
 </head>
@@ -167,8 +211,43 @@
 
   <div class="editor-container">
     <textarea id="codeTextArea" rows="20" placeholder="Type your code here..."></textarea>
-    <button class="submit-button" th:pIdVar ="${problem.problemId}" onclick="submitCodeWrapper(this.getAttribute('pIdVar'))">Submit</button>
+<!--    <button class="submit-button" th:pIdVar ="${problem.problemId}" onclick="submitCodeWrapper(this.getAttribute('pIdVar'))">Submit</button>-->
   </div>
+
+</div>
+<div style="margin-top: 10px; margin-right: 10px; align-self: flex-end;">
+  <button class="run-button" th:data-problem="${problem}" onclick="runCode(this)">Run</button>
+  <button class="submit-button" th:data-problem="${problem}" onclick="submitCode(this)">Submit</button>
+</div>
+<div>
+  <a id="subcode">Submitting code ...</a>
+</div>
+<div id="exampleTestCase" class="submission-details-example">
+  <h3 id="exampleTestCaseHeading">Example test case</h3>
+  <div id="status"></div>
+  <div id="stdin"></div>
+  <div id="output"></div>
+  <div id="time"></div>
+  <div id="memory"></div>
+  <div id="language"></div>
+</div>
+<div id="hiddenTestCase1" class="submission-details">
+  <h3 id="hiddenTestCase1Heading">Hidden test case 1</h3>
+  <div id="status2"></div>
+<!--  <div id="stdin2"></div>-->
+<!--  <div id="output2"></div>-->
+  <div id="time2"></div>
+  <div id="memory2"></div>
+  <div id="language2"></div>
+</div>
+<div id="hiddenTestCase2" class="submission-details">
+  <h3 id="hiddenTestCase2Heading">Hidden test case 2</h3>
+  <div id="status3"></div>
+<!--  <div id="stdin3"></div>-->
+<!--  <div id="output3"></div>-->
+  <div id="time3"></div>
+  <div id="memory3"></div>
+  <div id="language3"></div>
 </div>
 
 <script th:src="@{/js/problem.js}" defer="defer"></script>

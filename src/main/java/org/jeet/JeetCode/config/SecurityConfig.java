@@ -86,6 +86,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
     public SecurityFilterChain securityFilterChain(@NotNull HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/signup", "/login", "/signup/**", "/problems/submissions/**").permitAll()
                         .anyRequest().authenticated()

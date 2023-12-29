@@ -23,5 +23,9 @@ public class ProblemEntity {
     private String description;
     private String exampleIn;
     private String exampleOut;
+    private String example2_in;
+    private String example2_out;
+    private String example3_in;
+    private String example3_out;
 
 }

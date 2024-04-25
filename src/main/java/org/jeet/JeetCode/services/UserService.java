@@ -1,10 +1,10 @@
 package org.jeet.JeetCode.services;
 
-import org.jeet.JeetCode.domain.entities.SignUpRequest;
+import org.jeet.JeetCode.domain.entities.AdminDetail;
 import org.jeet.JeetCode.domain.entities.UserEntity;
 
 public interface UserService {
-    void signUpUser(SignUpRequest signUpRequest);
+    void signUpUser(AdminDetail adminDetail);
 
     UserEntity findById(String userName);
 

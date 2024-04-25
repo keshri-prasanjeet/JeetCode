@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class UserEntity {
     @Id
-    private String userName;
     private String fullName;
+    private String emailId;
     private String password;
     private Long submissionCount;
 

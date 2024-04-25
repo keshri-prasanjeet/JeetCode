@@ -1,5 +1,5 @@
 async function submitCode(button){
-    const url = 'http://localhost:2358/submissions?base64_encoded=false&fields=*';
+    const url = 'http://127.0.0.1:52882/submissions?base64_encoded=false&fields=*';
     var code = document.getElementById('codeTextArea').value;
     const problemData = button.getAttribute('data-problem');
     console.log(problemData)
@@ -74,7 +74,7 @@ async function submitCode(button){
 }
 
 async function checkSubmissionStatusSubmit(token, testCase){
-    const url = `http://localhost:2358/submissions/${token}?base64_encoded=false&fields=*`;
+    const url = `http://127.0.0.1:52882/submissions/${token}?base64_encoded=false&fields=*`;
     const options = {
         method: 'GET',
         headers: {
@@ -142,7 +142,7 @@ async function checkSubmissionStatusSubmit(token, testCase){
 }
 
 async function runCode(button){
-    const url = 'http://localhost:2358/submissions?base64_encoded=false&fields=*';
+    const url = 'http://127.0.0.1:52882/submissions?base64_encoded=false&fields=*';
     var code = document.getElementById('codeTextArea').value;
     const problemData = button.getAttribute('data-problem');
     console.log(problemData)
@@ -190,7 +190,7 @@ async function runCode(button){
 }
 
 async function checkSubmissionStatus(token){
-    const url = `http://localhost:2358/submissions/${token}?base64_encoded=false&fields=*`;
+    const url = `http://127.0.0.1:52882/submissions/${token}?base64_encoded=false&fields=*`;
     const options = {
         method: 'GET',
         headers: {
@@ -227,6 +227,7 @@ async function checkSubmissionStatus(token){
         const timeElement = document.getElementById('time');
         const memoryElement = document.getElementById('memory');
         const languageElement = document.getElementById('language');
+        const compilationElement = document.getElementById('compile_output');
 
         statusElement.textContent = `Status: ${result.status.description}`;
         stdinElement.textContent = `Stdin: ${result.stdin}`;
@@ -234,6 +235,13 @@ async function checkSubmissionStatus(token){
         timeElement.textContent = `Time: ${result.time}`;
         memoryElement.textContent = `Memory: ${result.memory}`;
         languageElement.textContent = `Language used: ${result.language.name}`;
+        if(result.compile_output==null){
+            compilationElement.style.display = "none";
+        }
+        else {
+            compilationElement.style.display = "block";
+            compilationElement.textContent = `Compilation message: ${result.compile_output}`;
+        }
     }
 
 }

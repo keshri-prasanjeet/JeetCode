@@ -1,4 +1,4 @@
-//// problem.js
+//// new-problem[DEPRECEATED].js
 //async function submitCode(problemId) {
 //    console.log("Button was pressed");
 //    var code = document.getElementById('codeTextArea').value;
@@ -29,7 +29,7 @@
 //    }
 //}
 
-// problem.js
+// new-problem[DEPRECEATED].js
 
 //function getCookie(name) {
 //    const value = `; ${document.cookie}`;

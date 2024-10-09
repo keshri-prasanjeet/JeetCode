@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Data
 @Builder
@@ -17,8 +16,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class UserEntity {
     @Id
-    private String userName;
     private String fullName;
+    private String emailId;
     private String password;
+    private Long submissionCount;
 
+    //TODO implement the list of SubmissionEntity inside UserEntity
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+//    private List<SubmissionEntity> submissions;
 }

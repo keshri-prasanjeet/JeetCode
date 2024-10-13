@@ -2,7 +2,7 @@
 
 Welcome to JeetCode, where coding meets fun! 🎉 Sharpen your Data Structures and Algorithms skills with our LeetCode-inspired platform that's designed to make problem-solving an absolute blast! 💻🧠
 
-JeetCode is live at [JeetCode](jeetcode.netlify.app)
+JeetCode is live at [JeetCode](https://jeetcode.netlify.app)
 
 ![JeetCode Banner](img.png)
 ## 🌟 Features That'll Blow Your Mind
@@ -35,7 +35,7 @@ Built on the robust SpringBoot framework, our backend is ready to handle whateve
 
 ## 🚀 Try it out
 
-JeetCode is live at [jeetcode](jeetcode.netlify.app)
+JeetCode is live at [JeetCode](https://jeetcode.netlify.app)
 
 ## 📜 License
 
